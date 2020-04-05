@@ -1,0 +1,5 @@
+class constants:
+    MAX_NEW = 300
+    HTTP_ACCEPTED = 200
+    HTTP_NOT_FOUND = 404
+    HTTP_SERVER_ERROR = 404
