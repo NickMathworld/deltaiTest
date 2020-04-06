@@ -1,8 +1,11 @@
+import utils.format as formatt
+import utils.constants as CONTS
+import model.news as news
+import utils.algorithm as algorithm
+import repositories.dbmongo as dbmongo
+
 import re
 import requests
-import constants
-import news
-import dbmongo
 from bs4 import BeautifulSoup
 from googlesearch import search_news
 
@@ -11,27 +14,31 @@ class webScrapler:
     def __init__(self):
         self.data = []
         
-    def busca(self,keywords):
+    def find(self,keywords):
         db = dbmongo.MongoDB()
         query = ""
         keywords.sort()
         keywords = [item.strip() for item in keywords]
+        # Checamos que si ya existen las keywords en algún request previo
         if db.exits_News(keywords) is True:
             return db.find_News(keywords)
        
         for word in keywords:
             query+=word+" "
-        urls = search_news(query, lang = 'es', stop = 5)
+        urls = search_news(query, lang = 'es', stop = CONTS.MAX_URLS)
         ans = {}
         ans['news'] = []
         for url in urls:
-            print("Scrapling:",url)
             page = requests.get(url)
-            texto = ""
-            if page.status_code == 200:
-                texto = self.get_news(page)
-            aux = news.News(texto,0,str(url))
+            txt = ""
+            if page.status_code == CONTS.HTTP_ACCEPTED:
+                txt = self.get_news(page)
+            if len(txt) == 0:
+                continue
+            aux = news.News(txt.strip(),1,str(url))
             ans['news'].append(aux.serialize_news()) 
+        self.get_top3(ans['news'],keywords)   
+        #Guardamos el caso en la base de datos
         db.insert_News(ans,keywords)
         return ans
 
@@ -46,10 +53,23 @@ class webScrapler:
         for paragraph in paragraphs:
             for subp in paragraph.contents:
                 ans+=tags.sub("",str(subp))+"\n"
-                if len(ans) > 400:
-                    return re.sub(r'(\n){1,}',' ', ans)
-        return re.sub(r'(\n){2,}','\n', ans)
+                if len(ans) > CONTS.MAX_NEW:
+                    return formatt.format_text(ans)
+        return formatt.format_text(ans)
     
-    def puntuacion(self,news):
-        for txt in news:
-            print(txt['score'])
+    def get_top3(self,news,keywords):
+        sum = len(keywords)
+        for word in keywords:
+            for item in news:
+                aux = algorithm.KMPSearch(word.lower(),item["content"].lower())
+                sum = sum+aux
+                item["score"]+=aux
+        news.sort(reverse=True,key = self.sort_news)
+        for i in range(0, len(news)): 
+            if i > 2:
+                news.pop(3)
+            else :
+                 news[i]['score'] = news[i]['score']/sum
+
+    def sort_news(self,item):
+        return item["score"]

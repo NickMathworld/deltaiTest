@@ -8,7 +8,7 @@ app = flask.Flask(__name__)
 def home():
     keywords_req = request.get_json()
     ws = webscrapler.webScrapler()
-    ans = ws.busca(keywords_req["keywords"])
+    ans = ws.find(keywords_req["keywords"])
     return jsonify(ans)
 
 app.run()

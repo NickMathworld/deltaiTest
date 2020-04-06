@@ -2,7 +2,6 @@ from pymongo import MongoClient
 class MongoDB:
     def insert_News(self,news,keywords):
         client = MongoClient(port=27017)
-        print(keywords)
         db = client.deltAI
         aux = {'keywords':keywords,
                 'news': news}

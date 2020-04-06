@@ -35,9 +35,3 @@ def computeLPSArray(pat, M, lps):
             else: 
                 lps[i] = 0
                 i += 1
-  
-txt = "ABABDABACDABABCABAB"
-pat = "ABABCABAB"
-KMPSearch(pat, txt) 
-  
-# This code is contributed by Bhavya Jain 
