@@ -10,5 +10,5 @@ app = flask.Flask(__name__)
 def home():
     json = g.data
     wb = webscrapler.WebScrapler()
-    return jsonify(wb.find(json['keywords']))
+    return jsonify(wb.find(json['keywords'],json['language']))
 app.run()

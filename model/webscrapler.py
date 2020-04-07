@@ -14,18 +14,18 @@ class WebScrapler:
     def __init__(self):
         self.data = []
         
-    def find(self,keywords):
+    def find(self,keywords,language):
         db = dbmongo.MongoDB()
         query = ""
         keywords.sort()
         keywords = [item.strip() for item in keywords]
         # Checamos que si ya existen las keywords en algún request previo
-        if db.exits_News(keywords) is True:
-            return db.find_News(keywords)
+        if db.exits_News(keywords,language) is True:
+            return db.find_News(keywords,language)
        
         for word in keywords:
             query+=word+" "
-        urls = search_news(query, lang = 'es', stop = CONTS.MAX_URLS)
+        urls = search_news(query, lang = language, stop = CONTS.MAX_URLS)
         ans = {}
         ans['news'] = []
         for url in urls:
@@ -39,7 +39,7 @@ class WebScrapler:
             ans['news'].append(aux.serialize_news()) 
         self.get_top3(ans['news'],keywords)   
         #Guardamos el caso en la base de datos
-        db.insert_News(ans,keywords)
+        db.insert_News(ans,keywords,language)
         return ans
 
 
