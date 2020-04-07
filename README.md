@@ -31,3 +31,28 @@ origin  https://github.com/NickMathworld/deltaiTest (push)
 ```
 git push heroku master
 ```
+Una vez que finalice, nos dará la dirección del server donde fue deployado
+```
+remote: Verifying deploy... done.
+To https://git.heroku.com/young-wave-03473.git
+ * [new branch]      master -> master
+```
+Podemos hacer un open para verificar que se está ejecutando de manera correcta
+```
+heroku open
+```
+Se nos abrirá una ventana en nuestro navegador y se mostrará un mensaje de hola mundo
+## Uso de la API
+Una vez deployada la API, podemos hacer uso postman,curl o cualquier herramienta para mandar peticiones http
+### Formato del request 
+El schema que se pretende recibir es el siguiente
+```
+news = {
+    'type': 'object',
+    'properties': {
+        'keywords': {'type': 'array','items':{'type':'string'} },
+        'language': {'type': 'string'},
+    },
+    'required': ['keywords']
+}
+```
