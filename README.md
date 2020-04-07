@@ -99,5 +99,5 @@ https://deltaitest.herokuapp.com/api/news
 La base de datos usada para éste proyecto fue MongoDB Atlas, es decir, la base de datos no vive en el servidor de Heroku, sino que fue deployada con la herramienta de Mongo y vive en un servidor de aws.
 Pero la información guardada se puede consultar usando MongoDB Compass con el siguiente string de conección
 ```
-mongodb+srv://<username>:<password>@deltaicluster-072dm.mongodb.net/test
+mongodb+srv://public:123@deltaicluster-072dm.mongodb.net/test
 ```
