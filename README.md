@@ -1,2 +1,2 @@
-# deltaiTest
-Éste repo es para guardar mi proyecto para el test de software engineer backend de deltai
+# API News 
+API Para obtener noticias de ciertas keywords
