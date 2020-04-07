@@ -94,3 +94,10 @@ https://deltaitest.herokuapp.com/api/news
 }
 ```
 ## Más ejemplos en mi colección de [POSTMAN](https://www.getpostman.com/collections/546d699a039293c49228).
+## Base de Datos 
+### Mongo DB
+La base de datos usada para éste proyecto fue MongoDB Atlas, es decir, la base de datos no vive en el servidor de Heroku, sino que fue deployada con la herramienta de Mongo y vive en un servidor de aws.
+Pero la información guardada se puede consultar usando MongoDB Compass con el siguiente string de conección
+```
+mongodb+srv://<username>:<password>@deltaicluster-072dm.mongodb.net/test
+```
