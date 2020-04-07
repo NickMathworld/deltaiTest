@@ -56,7 +56,7 @@ news = {
     'required': ['keywords']
 }
 ```
-En cualquier caso que no se mande la información como se debe, un response con status 400 "BAD REQUEST"
+En cualquier caso que no se mande la información como se debe, se regresará un response con status 400 "BAD REQUEST"
 #### Parametros
 - Keywords: Una lista de palabras en las que se basará la búsqueda
 - Language: Puesto que se usa la API de Google, language servirá para definir una prioridad de que lenguaje queremos traer las noticias, no obstante, la misma API detecta el idioma de las palabras así que si se busca, digamos hola,mundo en inglés, la misma API nos regresará noticias en español y no en inglés.
@@ -69,7 +69,7 @@ https://deltaitest.herokuapp.com/api/news
 Por lo que todos los siguientes ejemplos serán sobre ésta URL
 #### Request
 POST
-https://deltaitest.herokuapp.com/api/news
+https://deltaitest.herokuapp.com/
 ```
 {
 	"keywords": ["hola","mundo"],
