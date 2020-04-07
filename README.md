@@ -93,3 +93,4 @@ https://deltaitest.herokuapp.com/api/news
     ]
 }
 ```
+## Más ejemplos en mi colección de [POSTMAN](https://www.getpostman.com/collections/546d699a039293c49228).
