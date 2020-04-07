@@ -13,9 +13,8 @@ def news():
     language = CONTS.DEFAULT_LANGUAGE
     if 'language' in json:
         language = json['language']
-    keywords = list(set(json['keywords']))
     wb = webscrapler.WebScrapler()
-    return jsonify(wb.find(keywords,language))
+    return jsonify(wb.find(json['keywords'],language))
 
 @app.route('/')
 def index():
