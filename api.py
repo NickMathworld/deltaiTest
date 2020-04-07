@@ -15,4 +15,3 @@ def home():
     print(language)
     wb = webscrapler.WebScrapler()
     return jsonify(wb.find(json['keywords'],language))
-app.run()
