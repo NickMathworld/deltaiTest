@@ -4,5 +4,5 @@ news = {
         'keywords': {'type': 'array','items':{'type':'string'} },
         'language': {'type': 'string'},
     },
-    'required': ['keywords','language']
+    'required': ['keywords']
 }

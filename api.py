@@ -9,6 +9,10 @@ app = flask.Flask(__name__)
 @expects_json(schemas.news)
 def home():
     json = g.data
+    language = "es"
+    if 'language' in json:
+        language = json['language']
+    print(language)
     wb = webscrapler.WebScrapler()
-    return jsonify(wb.find(json['keywords'],json['language']))
+    return jsonify(wb.find(json['keywords'],language))
 app.run()
