@@ -9,7 +9,7 @@ import requests
 from bs4 import BeautifulSoup
 from googlesearch import search_news
 
-class webScrapler:
+class WebScrapler:
     """Mi implementación de un web scrapler"""
     def __init__(self):
         self.data = []
