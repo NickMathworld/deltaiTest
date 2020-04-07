@@ -1,6 +1,7 @@
 import flask
 import model.webscrapler as webscrapler
 import utils.schemas as schemas
+import utils.constants as CONTS
 from flask import Flask, jsonify, g, url_for
 from flask_expects_json import expects_json
 app = flask.Flask(__name__)
@@ -9,12 +10,12 @@ app = flask.Flask(__name__)
 @expects_json(schemas.news)
 def news():
     json = g.data
-    language = "es"
+    language = CONTS.DEFAULT_LANGUAGE
     if 'language' in json:
         language = json['language']
-    print(language)
+    keywords = list(set(json['keywords']))
     wb = webscrapler.WebScrapler()
-    return jsonify(wb.find(json['keywords'],language))
+    return jsonify(wb.find(keywords,language))
 
 @app.route('/')
 def index():
