@@ -1,6 +1,6 @@
 from whitenoise import WhiteNoise
 
-from api import app
+from deploy import app
 
 application = WhiteNoise(app)
 application.add_files('model/', prefix='model /')

@@ -1,6 +1,6 @@
 import os
 
-from api import app
+from deploy import app
 
 
 if __name__ == '__main__':
