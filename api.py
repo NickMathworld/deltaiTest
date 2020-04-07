@@ -7,7 +7,7 @@ app = flask.Flask(__name__)
 
 @app.route('/api/news', methods=['POST'])
 @expects_json(schemas.news)
-def home():
+def news():
     json = g.data
     language = "es"
     if 'language' in json:
@@ -15,3 +15,7 @@ def home():
     print(language)
     wb = webscrapler.WebScrapler()
     return jsonify(wb.find(json['keywords'],language))
+
+@app.route('/')
+def index():
+    return '<h1>Hola mundo</h1>'
