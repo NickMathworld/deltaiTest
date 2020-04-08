@@ -56,15 +56,20 @@ news = {
     'required': ['keywords']
 }
 ```
-En cualquier caso que no se mande la información como se debe, un response con status 400 "BAD REQUEST"
+En cualquier caso que no se mande la información como se debe, se regresará un response con status 400 "BAD REQUEST"
 #### Parametros
 - Keywords: Una lista de palabras en las que se basará la búsqueda
 - Language: Puesto que se usa la API de Google, language servirá para definir una prioridad de que lenguaje queremos traer las noticias, no obstante, la misma API detecta el idioma de las palabras así que si se busca, digamos hola,mundo en inglés, la misma API nos regresará noticias en español y no en inglés.
 
 ### Ejemplo
+Actualmente la API está en un servidor de Heroku en la siguiente URL
+```
+https://deltaitest.herokuapp.com/api/news
+```
+Por lo que todos los siguientes ejemplos serán sobre ésta URL
 #### Request
 POST
-https://deltaitest.herokuapp.com/api/news
+https://deltaitest.herokuapp.com/
 ```
 {
 	"keywords": ["hola","mundo"],
@@ -99,5 +104,5 @@ https://deltaitest.herokuapp.com/api/news
 La base de datos usada para éste proyecto fue MongoDB Atlas, es decir, la base de datos no vive en el servidor de Heroku, sino que fue deployada con la herramienta de Mongo y vive en un servidor de aws.
 Pero la información guardada se puede consultar usando MongoDB Compass con el siguiente string de conección
 ```
-mongodb+srv://<username>:<password>@deltaicluster-072dm.mongodb.net/test
+mongodb+srv://public:123@deltaicluster-072dm.mongodb.net/test
 ```
