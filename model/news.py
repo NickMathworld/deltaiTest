@@ -7,6 +7,6 @@ class News:
     def serialize_news(self):
         ans = {}
         ans['content'] = self.content
-        ans['score'] = self.score
+        ans['ranking'] = self.score
         ans['reference'] = self.reference
         return ans

@@ -67,13 +67,13 @@ class WebScrapler:
             for item in news:
                 aux = algorithm.KMPSearch(word.lower(),item["content"].lower())
                 sum = sum+aux
-                item["score"]+=aux
+                item["ranking"]+=aux
         news.sort(reverse=True,key = self.__sort_news)
         for i in range(0, len(news)): 
             if i > 2:
                 news.pop(3)
             else :
-                 news[i]['score'] = news[i]['score']/sum
+                 news[i]['ranking'] = news[i]['ranking']/sum
 
     def __sort_news(self,item):
-        return item["score"]
+        return item["ranking"]
